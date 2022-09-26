@@ -1,6 +1,5 @@
 'use strict'
 let countP = document.getElementById("count");
-
 let canvas = document.getElementsByTagName("canvas")[0];
 let ctx    = canvas.getContext("2d");
 
