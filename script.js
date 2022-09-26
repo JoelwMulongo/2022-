@@ -211,11 +211,9 @@ let Simulation = (() =>
 
             let g = grid.at(gx, gy);
             findNeighbours(i, g);
-
             g.particles[g.count++] = i;
         }
     }
-
     function findNeighbours (i, g)
     {
         for (let j = 0; j < g.count; j++)
@@ -238,18 +236,14 @@ let Simulation = (() =>
         for (let i = 0; i < contactsNum; i++)
         {
             let c = contacts[i];
-
             let pressureWeight = c.weight * (density[c.a] + density[c.b] - DENSITY) * PRESSURE;
             pressureWeight = Math.max(0, pressureWeight);
-
             let displacement_x = c.normal_x * pressureWeight;
             let displacement_y = c.normal_y * pressureWeight;
-
             force_x[c.a] += displacement_x;
             force_y[c.a] += displacement_y;
             force_x[c.b] -= displacement_x;
             force_y[c.b] -= displacement_y;
-
             let vx = velocity_x[c.b] - velocity_x[c.a];
             let vy = velocity_y[c.b] - velocity_y[c.a];
 
@@ -263,7 +257,6 @@ let Simulation = (() =>
             force_y[c.b] -= vy;
         }
     }
-
     function borderConstraint ()
     {
         for (let i = 0; i < particlesNum; i++)
@@ -275,7 +268,6 @@ let Simulation = (() =>
             {
                 velocity_x[i] += (RADIUS - px) * 0.5 - velocity_x[i] * 0.5;
             }
-
             if (py < RADIUS)
             {
                 velocity_y[i] += (RADIUS - py) * 0.5 - velocity_y[i] * 0.5;
@@ -285,14 +277,12 @@ let Simulation = (() =>
             {
                 velocity_x[i] += (canvas.clientWidth - RADIUS - px) * 0.5 - velocity_x[i] * 0.5;
             }
-
             if (py > canvas.clientHeight - RADIUS)
             {
                 velocity_y[i] += (canvas.clientHeight - RADIUS - py) * 0.5 - velocity_y[i] * 0.5;
             }
         }
     }
-
     function gravity ()
     {
         for (let i = 0; i < particlesNum; i++)
@@ -300,7 +290,6 @@ let Simulation = (() =>
             velocity_y[i] += 0.05;
         }
     }
-
     function update ()
     {
         clearGrid();
@@ -310,20 +299,17 @@ let Simulation = (() =>
         borderConstraint();
         integrate();
     }
-
     function addFluid (x, y)
     {
         if (particlesNum === MAX_PARTICLES)
         {
             return;
         }
-
         position_x[particlesNum] = x;
         position_y[particlesNum] = y;
         velocity_y[particlesNum] = 5;
         particlesNum++;
     }
-
     return {
         update: update,
         pour: function(x, y) {
@@ -361,31 +347,23 @@ let mouse = {
     x: 0,
     y: 0
 };
-
 let pourTimer = 0;
-
 update();
-
 function update ()
 {
     ctx.fillStyle = 'rgba(0,0,0,0.65)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     pourTimer += 0.016;
     resize(canvas);
-
     if (mouse.down && pourTimer > 0.08)
     {
         pourTimer = 0;
         Simulation.pour(mouse.x, mouse.y);
     }
-
     Simulation.update();
     render();
-
     requestAnimationFrame(update);
 }
-
 function render ()
 {
     ctx.fillStyle = 'rgb(150, 230, 240)';
@@ -395,12 +373,10 @@ function render ()
         ctx.fillRect(x - 3, y - 3, 6, 6);
     });
 }
-
 function resize (canvas)
 {
     let displayWidth  = canvas.clientWidth;
     let displayHeight = canvas.clientHeight;
-
     if (canvas.width  != displayWidth ||
         canvas.height != displayHeight)
     {
@@ -408,11 +384,8 @@ function resize (canvas)
         canvas.height = displayHeight;
         Simulation.reset();
         for (let i = 0; i < 80; i++) {
-        	Simulation.pour(displayWidth * 0.5, displayHeight * 0.3 + 10 * i);
-        }
-    }
-
-
+        	Simulation.pour(displayWidth * 0.5, displayHeight * 0.3 + 10 * i);  }  }
+}
 canvas.addEventListener("mousedown", (e) =>
 {
     e.preventDefault();
