@@ -1,5 +1,4 @@
 'use strict'
-
 let countP = document.getElementById("count");
 
 let canvas = document.getElementsByTagName("canvas")[0];
