@@ -4,7 +4,7 @@ let canvas = document.getElementsByTagName("canvas")[0];
 let ctx    = canvas.getContext("2d");
 let Simulation = (() =>
 {
-    class Grid extends Array
+ class Grid extends Array
     {
         constructor (w, h)
         {
@@ -431,7 +431,6 @@ window.addEventListener("mouseup", (e) =>
 {
     mouse.down = false;
 });
-
 canvas.addEventListener("touchstart", (e) =>
 {
     e.preventDefault();
