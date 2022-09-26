@@ -411,7 +411,7 @@ function resize (canvas)
         	Simulation.pour(displayWidth * 0.5, displayHeight * 0.3 + 10 * i);
         }
     }
-}
+
 
 canvas.addEventListener("mousedown", (e) =>
 {
@@ -420,13 +420,11 @@ canvas.addEventListener("mousedown", (e) =>
     mouse.x = e.pageX;
     mouse.y = e.pageY;
 });
-
 canvas.addEventListener("mousemove", (e) =>
 {
     mouse.x = e.pageX;
     mouse.y = e.pageY;
 });
-
 window.addEventListener("mouseup", (e) =>
 {
     mouse.down = false;
@@ -438,13 +436,11 @@ canvas.addEventListener("touchstart", (e) =>
     mouse.x = e.pageX;
     mouse.y = e.pageY;
 });
-
 canvas.addEventListener("touchmove", (e) =>
 {
     mouse.x = e.targetTouches[0].pageX;
     mouse.y = e.targetTouches[0].pageY;
 });
-
 canvas.addEventListener("touchend", (e) =>
 {
     mouse.down = false;
